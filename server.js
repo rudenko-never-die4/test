@@ -13,14 +13,13 @@ app.post('/start-long-operation', async (req, res) => {
     
     console.log(`Operation started for ${clientId}, delay ${delaySeconds}s`);
     
-    res.json({ 
-        status: 'accepted',
-        operationId: Date.now(),
-        willCompleteIn: delaySeconds
-    });
-    
     setTimeout(async () => {
         try {
+            res.json({ 
+                status: 'accepted',
+                operationId: Date.now(),
+                willCompleteIn: delaySeconds
+            });
             console.log(`Operation completed for ${clientId}`);
         } catch (error) {
             console.error('Error sending result:', error.message);
